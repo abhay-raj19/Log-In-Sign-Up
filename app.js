@@ -1,14 +1,21 @@
 const express =require("express");
 const bodyParser =require("body-parser");
 const ejs =require("ejs")
+const encrypt = require("mongoose-encryption")
 const mongoose = require('mongoose');
+const { encryptedChildren } = require("mongoose-encryption");
 mongoose.set("strictQuery", false);
 mongoose.connect("mongodb://127.0.0.1:27017/userDB");
 //created a mongoose user schema
-const userSchema = {
+const userSchema = new mongoose.Schema({
     email : String,
     password : String
-};
+});
+
+const secret = "Thisisoursecret";
+
+userSchema.plugin(encrypt,{secret:secret, encryptedFields: ["password"]});
+
 //created a model for user by using schema
 
 const User = new mongoose.model("User",userSchema);
