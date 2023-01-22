@@ -1,10 +1,10 @@
-require('dotenv').config();
+// require('dotenv').config();
 const express =require("express");
 const bodyParser =require("body-parser");
 const ejs =require("ejs")
 const encrypt = require("mongoose-encryption")
 const mongoose = require('mongoose');
-const { encryptedChildren } = require("mongoose-encryption");
+const md5 = require('md5');
 mongoose.set("strictQuery", false);
 mongoose.connect("mongodb://127.0.0.1:27017/userDB");
 //created a mongoose user schema
@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
 
 // console.log(process.env.API_key);
 
-userSchema.plugin(encrypt,{secret:process.env.SECRET, encryptedFields: ["password"]});
+// userSchema.plugin(encrypt,{secret:process.env.SECRET, encryptedFields: ["password"]});
 
 //created a model for user by using schema
 
@@ -42,7 +42,7 @@ app.get("/register",function (req,res) {
 app.post("/register",function (req,res) {
     const newUser = new User({
         email:req.body.username,
-        password:req.body.password
+        password:md5(req.body.password)
     });
     newUser.save(function (err) {
         if(err){
@@ -56,7 +56,7 @@ app.post("/register",function (req,res) {
 
 app.post("/login",function (req,res) {
     const username = req.body.username;
-    const password = req.body.password;  
+    const password = md5(req.body.password);  
 
     User.findOne({email:username},function (err,foundUser){
         if (err) {
