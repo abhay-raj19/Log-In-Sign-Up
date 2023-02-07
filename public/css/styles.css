@@ -5,12 +5,28 @@ body {
 
 .centered {
     padding-top: 200px;
-    text-align: center;
+    text-align: right;
 }
 
 .secret-text {
   text-align: center;
   font-size: 2rem;
   color: #fff;
-  background-color: #000;
+  background-color: #ffbf23;
+}
+.main-font{
+  color: #ffbf23;
+  font-size: 6rem;;
+}
+.back{
+  background-color: #ffbf23;
+}
+.back-hover{
+  background-color: #ffbf23;
+}
+.font-style{
+  color: #ffbf23;
+}
+.centers{
+  text-align: center;
 }
