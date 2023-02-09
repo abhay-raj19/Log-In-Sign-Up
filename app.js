@@ -1,15 +1,19 @@
-import mongoose from 'mongoose';
-import express from "express";
-import dotenv from "dotenv";
-import bodyParser from 'body-parser';
-import session from 'express-session';
-import passport from 'passport';
-import passportLocalMongoose from 'passport-local-mongoose';
+require('dotenv').config();
+const mongoose = require('mongoose');
+const express = require('express');
+const dotenv = require("dotenv");
+const bodyParser  = require("body-parser");
+const session = require("express-session");
+const passport = require("passport");
+const passportLocalMongoose = require("passport-local-mongoose");
 
-
-//configurations
-
-dotenv.config();
+// import mongoose from 'mongoose';
+// import express from "express";
+// import dotenv from "dotenv";
+// import bodyParser from 'body-parser';
+// import session from 'express-session';
+// import passport from 'passport';
+// import passportLocalMongoose from 'passport-local-mongoose';
 
 //database configuration
 
@@ -49,6 +53,8 @@ userSchema.plugin(passportLocalMongoose);
 
 //created model using schema 
 const User = new mongoose.model("User",userSchema);
+
+
 
 passport.use(User.createStrategy());
 
@@ -166,7 +172,9 @@ app.post("/login",(req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => console.log(`App listening at port ${PORT}`));
+// app.listen(PORT, () => console.log(`App listening at port ${PORT}`));
 
 
-
+app.listen( PORT , () => {
+        console.log(`App listening at port ${PORT}`);
+    });
