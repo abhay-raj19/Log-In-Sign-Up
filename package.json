@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "Authentication app",
   "main": "app.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "Abhay-raj19",
   "license": "ISC",
@@ -15,6 +18,8 @@
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "firebase": "^9.17.1",
+    "firebaseui": "^6.0.2",
     "md5": "^2.3.0",
     "mongoose": "^6.8.4",
     "mongoose-encryption": "^2.1.2",
